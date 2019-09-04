@@ -34,29 +34,28 @@ const server = http.createServer(async (req, res) => {
     }
     
     const {
-        adoricProxyHost = 'https://adoric.com'
+        proxyHost = 'https://www.heroku.com/'
     } = urlParts.query;
 
-    // const [subdomain] = req.headers.host.split('.');
-    const subdomain = 12345678;
+    const [subdomain] = req.headers.host.split('.') || [12345678];
 
     if (adoricProxyHost) {
         // 3 days expiries
         client.set(subdomain, adoricProxyHost, 'EX', 60 * 60 * 24 * 3);
 
-        target = adoricProxyHost;
+        target = proxyHost;
     } else {
         target = await client.getAsync(subdomain);
 
         target = url.parse(target);
     }
 
-    target = adoricProxyHost ? target : `${target.protocol}//${target.hostname}`;
+    target = proxyHost ? target : `${target.protocol}//${target.hostname}`;
 
     req.ADORIC = {
         target,
         subdomain,
-        adoricProxyHost
+        proxyHost
     };
 
     proxy.web(req, res, {
@@ -67,7 +66,7 @@ const server = http.createServer(async (req, res) => {
         toProxy: false,
         secure: true,
         protocolRewrite: true,
-        cookieDomainRewrite: 'iframe.adoric.com'
+        cookieDomainRewrite: 'serene-hamlet-82201.herokuapp.com/'
     });
 });
 
