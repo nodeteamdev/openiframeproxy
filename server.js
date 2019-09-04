@@ -37,7 +37,7 @@ const server = http.createServer(async (req, res) => {
         proxyHost = 'https://www.heroku.com/'
     } = urlParts.query;
 
-    const [subdomain] = req.headers.host.split('.') || [12345678];
+    const subdomain = Math.random();
 
     if (proxyHost) {
         // 3 days expiries
