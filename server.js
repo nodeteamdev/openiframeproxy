@@ -39,9 +39,9 @@ const server = http.createServer(async (req, res) => {
 
     const [subdomain] = req.headers.host.split('.') || [12345678];
 
-    if (adoricProxyHost) {
+    if (proxyHost) {
         // 3 days expiries
-        client.set(subdomain, adoricProxyHost, 'EX', 60 * 60 * 24 * 3);
+        client.set(subdomain, proxyHost, 'EX', 60 * 60 * 24 * 3);
 
         target = proxyHost;
     } else {
