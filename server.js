@@ -28,7 +28,7 @@ const server = http.createServer(async (req, res) => {
     }
     
     const {
-        adoricProxyHost
+        adoricProxyHost = 'https://adoric.com'
     } = urlParts.query;
 
     const [subdomain] = req.headers.host.split('.');
