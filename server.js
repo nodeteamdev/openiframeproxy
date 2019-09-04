@@ -73,4 +73,4 @@ const server = http.createServer(async (req, res) => {
 
 console.log(`listening on port ${port}`);
 
-server.listen(port);
+server.listen(process.env.PORT || 5000);
