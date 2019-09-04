@@ -37,7 +37,8 @@ const server = http.createServer(async (req, res) => {
         adoricProxyHost = 'https://adoric.com'
     } = urlParts.query;
 
-    const [subdomain] = req.headers.host.split('.');
+    // const [subdomain] = req.headers.host.split('.');
+    const subdomain = 12345678;
 
     if (adoricProxyHost) {
         // 3 days expiries
