@@ -5,7 +5,13 @@ const url = require('url');
 const bluebird = require('bluebird');
 const Handlers = require('./handlers');
 
-const client = redis.createClient();
+const client = redis.createClient({
+    host: 'ec2-3-227-15-100.compute-1.amazonaws.com',
+    user: 'h',
+    post: '26589',
+    password: 'p1eba01ed242d580fb7368c8f4cd5ad84fdfc3c39819e466c751156af9288076e',
+    url: 'redis://h:p1eba01ed242d580fb7368c8f4cd5ad84fdfc3c39819e466c751156af9288076e@ec2-3-227-15-100.compute-1.amazonaws.com:26589'
+});
 const port = 3000;
 
 bluebird.promisifyAll(redis.RedisClient.prototype);
